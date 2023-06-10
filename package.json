@@ -1,0 +1,28 @@
+{
+    "name": "node",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start": "ts-node -r dotenv/config src/index.ts",
+        "build": "node scripts/prebuild.js && tsc && node scripts/postbuild.js",
+        "docker:build": "docker build . -t test-node",
+        "docker:run": "docker kill test-node || docker rm test-node || docker run --name test-node -p 80:80 --env-file ./.env.docker -d test-node && docker logs test-node -f",
+        "docker:stop": "docker kill test-node || docker rm test-node",
+        "docker:exec": "docker exec -it test-node /bin/bash"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "dotenv": "^16.0.3",
+        "express": "^4.18.2"
+    },
+    "devDependencies": {
+        "@types/express": "^4.17.15",
+        "@types/fs-extra": "^9.0.13",
+        "@types/node": "^18.11.17",
+        "fs-extra": "^11.1.0",
+        "ts-node": "^10.9.1",
+        "typescript": "^4.9.4"
+    }
+}
