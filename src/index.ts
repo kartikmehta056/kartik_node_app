@@ -16,7 +16,7 @@ app.use((req, res, next) => {
 const router = express.Router();
 
 router.get('/hi', (req, res) => {
-    res.send("Final");
+    res.send("Final file");
 });
 
 router.get('/greet/:name', (req, res) => {
