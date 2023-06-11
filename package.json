@@ -4,7 +4,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "start": "ts-node -r dotenv/config src/index.ts",
+        "start": "pm2-runtime index.js --name my-app",
         "build": "node scripts/prebuild.js && tsc && node scripts/postbuild.js",
         "docker:build": "docker build . -t test-node",
         "docker:run": "docker kill test-node || docker rm test-node || docker run --name test-node -p 80:80 --env-file ./.env.docker -d test-node && docker logs test-node -f",

@@ -1,9 +1,8 @@
-FROM arm64v8/node:lts-slim
+FROM node:lts-alpine
 WORKDIR /app
 
 # add monitoring packages (optional)
-RUN apt update && \
-    apt install htop procps -y
+RUN apk update && apk add htop procps 
 
 
 # Setup Scripts
@@ -12,6 +11,8 @@ RUN cd .source && npm install
 RUN cd .source && npm run build
 RUN cp -r .source/dist/* .
 RUN rm -rf .source
+
+RUN npm install pm2 -g
 
 RUN NODE_ENV=production npm install
 
@@ -22,4 +23,4 @@ EXPOSE 80
 ENV APP_PORT=80
 
 # Execute Command
-CMD ["node", "index.js"]
+CMD ["pm2-runtime", "index.js", "--name", "my-app"]
