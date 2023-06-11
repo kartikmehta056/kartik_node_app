@@ -16,7 +16,7 @@ app.use((req, res, next) => {
 const router = express.Router();
 
 router.get('/hi', (req, res) => {
-    res.send("This is my nodejs project-1");
+    res.send("This is my nodejs project-1.1");
 });
 
 router.get('/greet/:name', (req, res) => {
